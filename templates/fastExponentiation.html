@@ -1,0 +1,60 @@
+<!doctype html>
+{% extends 'base.html' %}
+
+<html><head>
+
+
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@100&display=swap');
+ 
+       body{
+          font-family: 'Inter', sans-serif;
+       }
+    </style>
+ 
+ 
+ </head>
+
+{% block content %}
+
+<body>
+
+    <h1>Fast Exponentiation</h1>
+
+
+    <form action="" method="POST">
+
+
+
+        <div class="form-group" >
+            <label for="nmb1"><h3>Enter a number X</h3></label>
+            <input type="text" class="form-control" id="nmb1" name="x">
+        </div>
+
+        <div class="form-group" >
+            <label for="nmb2"><h3>Enter an exponent E</h3></label>
+            <input type="text" class="form-control" id="nmb2" name="e">
+        </div>
+
+        <div class="form-group" >
+            <label for="nmb3"><h3>Enter a modulo M</h3></label>
+            <input type="text" class="form-control" id="nmb3" name="m">
+        </div>
+      
+        <br>
+    
+        <input class="btn btn-outline-warning" type="submit" value="Find"> 
+    </form> 
+    
+    
+    <ul class="list-group">
+    
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+           Fast Exponentiation Result (x^e % m) is: {{ res }}
+        </li>
+    
+      </ul>
+</body>
+
+{% endblock %}
+</html>

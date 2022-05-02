@@ -1,0 +1,50 @@
+<!doctype html>
+{% extends 'base.html' %}
+
+<html><head>
+
+
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@100&display=swap');
+ 
+       body{
+          font-family: 'Inter', sans-serif;
+       }
+    </style>
+ 
+ 
+ </head>
+
+{% block content %}
+
+<body>
+
+    <h1>Prime Factorization</h1>
+
+
+    <form action="" method="POST">
+
+
+
+        <div class="form-group" >
+            <label for="nmb"><h3>Enter a number</h3></label>
+            <input type="text" class="form-control" id="nmb" name="normalNumber">
+        </div>
+      
+        <br>
+    
+        <input class="btn btn-outline-warning" type="submit" value="Find"> 
+    </form> 
+    
+    
+    <ul class="list-group">
+    
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+           Prime Factors are: {% for row in primeFactors %} {{ row }} ; {%endfor%} 
+        </li>
+    
+      </ul>
+</body>
+
+{% endblock %}
+</html>
