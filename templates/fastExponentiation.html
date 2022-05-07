@@ -9,6 +9,7 @@
  
        body{
           font-family: 'Inter', sans-serif;
+          color:white;
        }
     </style>
  
@@ -19,7 +20,42 @@
 
 <body>
 
+    {% for message in get_flashed_messages() %}
+
+      {% if success == False %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{  message  }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+  
+        {% endif %}
+  
+  
+        {% if success == True %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{  message  }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+    
+      {% endif %}
+      
+  
+      {% endfor %}
+
     <h1>Fast Exponentiation</h1>
+
+<div class="card bg-dark text-white">
+  <br>
+  <h2>Definition:</h2>
+  <span>Modular exponentiation is exponentiation performed over a modulus. It is useful in computer science, especially
+    in the field of public-key cryptography, where it is used in both Diffie-Hellman Key Exchange and RSA public/private
+    keys.</span>
+
+  <div>To see it in action, enter a number X , an exponent E and a modulo M, and we will display the result!</div>
+
+  <br>
+
+</div>
 
 
     <form action="" method="POST">
@@ -30,30 +66,36 @@
             <label for="nmb1"><h3>Enter a number X</h3></label>
             <input type="text" class="form-control" id="nmb1" name="x">
         </div>
+        <br>
 
         <div class="form-group" >
             <label for="nmb2"><h3>Enter an exponent E</h3></label>
             <input type="text" class="form-control" id="nmb2" name="e">
         </div>
 
+        <br>
         <div class="form-group" >
             <label for="nmb3"><h3>Enter a modulo M</h3></label>
             <input type="text" class="form-control" id="nmb3" name="m">
         </div>
       
         <br>
+        <br>
     
         <input class="btn btn-outline-warning" type="submit" value="Find"> 
     </form> 
     
-    
-    <ul class="list-group">
-    
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-           Fast Exponentiation Result (x^e % m) is: {{ res }}
-        </li>
-    
-      </ul>
+<br>
+      <div >
+        
+        <div >
+          <h4><b>Fast Exponentiation Result (X<sup>E</sup> % M) is:</b></h4> 
+          <h3> {{ res }}</h3> 
+        </div>
+      </div>
+
+    <br>
+
 </body>
 
 {% endblock %}

@@ -1,8 +1,6 @@
 from pydoc import render_doc
 from urllib import request
-from numpy import average
-from tabulate import tabulate
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 import math
 import random
 from functools import reduce
@@ -10,8 +8,10 @@ from functools import reduce
 
 
 
-
 app = Flask(__name__)
+app.secret_key="super secret key"
+
+
 @app.route("/", methods=['POST', 'GET'])
 def main():
 
@@ -23,7 +23,7 @@ def main():
 @app.route('/prime-factorization/',  methods=['POST', 'GET'])
 def primeFac():
 
-    
+    success = False
 
     def get_prime_factors(number):
             # create an empty list and later I will
@@ -68,17 +68,29 @@ def primeFac():
 
     primeFactors = []
     if request.method == 'POST':
-        primeNumber = request.form.get('normalNumber')
-        primeFactors = get_prime_factors(int(primeNumber))
 
+        try:
+            success = True
+            primeNumber = request.form.get('normalNumber')
+            if int(primeNumber) <= 0:
+                primeFactors = []
+            else:
+                primeFactors = get_prime_factors(int(primeNumber))
+            flash("Successfully computed")
 
+        except Exception as e:
+            success = False
+            error = e.args
+            print('Your error message is: ', error)
+            flash(error)
 
-    return render_template("primeFactor.html", primeFactors = primeFactors)
+    return render_template("primeFactor.html", primeFactors = primeFactors, success = success)
 
 
 @app.route('/totient-function/',  methods=['POST', 'GET'])
 def totientFunc():
 
+    success = False
     n =0
     # Euler's Totient Function
     # using Euler's product formula
@@ -114,8 +126,18 @@ def totientFunc():
         
         
     if request.method == 'POST':
-        inputNumber = request.form.get('normalNumber')
-        n = phi(int(inputNumber))
+
+        try:
+            success = True
+            inputNumber = request.form.get('normalNumber')
+            n = phi(int(inputNumber))
+            flash("Succefully computed")
+
+        except Exception as e:
+            success = False
+            error = e.args
+            print('Your error message is: ', error)
+            flash(error)
 
         
 
@@ -123,7 +145,7 @@ def totientFunc():
     # by Nikita Tiwari.
 
 
-    return render_template("totientFunction.html", phiOfN = n)
+    return render_template("totientFunction.html", phiOfN = n, success = success)
 
 
 
@@ -131,6 +153,7 @@ def totientFunc():
 def millerRabin():
 
     outputNumber = "Waiting..."
+    success = False
 
     def is_Prime(n):
         """
@@ -172,37 +195,38 @@ def millerRabin():
 
 
     if request.method == 'POST':
-        inputNumber = request.form.get('testedNumber')
-        outputNumber = is_Prime(int(inputNumber))
 
-        if outputNumber == True:
-            outputNumber = "Your number is very likely prime"
+        try:
+            success = True
+            inputNumber = request.form.get('testedNumber')
+            outputNumber = is_Prime(int(inputNumber))
 
-        elif outputNumber == False:
-            outputNumber = "Your number is certainly not prime"
+            if outputNumber == True:
+                outputNumber = "Your number is very likely prime"
+
+            elif outputNumber == False:
+                outputNumber = "Your number is certainly not prime"
+            flash("Successfully computed")
+
+        except Exception as e:
+            success = False
+            error = e.args
+            print('Your error message is: ', error)
+            flash(error)
 
 
-        
-
-    
-    return render_template("millerRabinAlgorithm.html", probableAnswer = outputNumber)
+    return render_template("millerRabinAlgorithm.html", probableAnswer = outputNumber, success = success)
 
 
 
 @app.route('/fast-exponentiation/',  methods=['POST', 'GET'])
 def fastExpo():
 
+    success = False
     outp = 0
     x = 1
     e = 1
     m = 1
-
-    if request.method == 'POST':
-        x = int(request.form.get('x'))
-        e = int(request.form.get('e'))
-        m = int(request.form.get('m'))
-
-
 
     def fExp(x,e,m):
         X = x
@@ -217,32 +241,36 @@ def fastExpo():
                 E = E - 1
         return Y
 
-    outp = fExp(x,e,m)
-    
+    if request.method == 'POST':
 
-    return render_template("fastExponentiation.html", res = outp)
+        try:
+            success = True
+            x = int(request.form.get('x'))
+            e = int(request.form.get('e'))
+            m = int(request.form.get('m'))
+            outp = fExp(x,e,m)
+            flash("Successfully computed")
+
+
+        except Exception as e:
+            success = False
+            error = e.args
+            print('Your error message is: ', error)
+            flash(error)
+
+    return render_template("fastExponentiation.html", res = outp, success = success)
 
     
 
 @app.route('/ch-rem-theorem/',  methods=['POST', 'GET'])
 def chineseRemTheorem():
 
-    res = 0
+    rows=''
     m = [1]
     a = [1]
-
+    success = False
     fin1 = []
     fin2 = []
-
-    if request.method == 'POST':
-        m = (request.form.get('m'))
-        a = (request.form.get('a'))
-
-
-    for i in range(0, len(m)):
-        fin1.append(int(m[i]))
-        fin2.append(int(a[i]))
-
 
     def mul_inv(a, b):
         b0 = b
@@ -262,11 +290,33 @@ def chineseRemTheorem():
             p = prod // int(n_i)
             sum += int(a_i) * mul_inv(p, int(n_i)) * p
         return sum % prod
- 
- 
-    rows = chinese_remainder(fin1,fin2)
 
-    return render_template("chineseRemTh.html", result = rows)
+    if request.method == 'POST':
+
+        try:
+            success = True
+            m = (request.form.get('m'))
+            a = (request.form.get('a'))
+
+
+            for i in range(0, len(m)):
+                fin1.append(int(m[i]))
+                fin2.append(int(a[i]))
+                rows = chinese_remainder(fin1,fin2)
+            flash("Successfully computed")
+
+        except Exception as e:
+            success = False
+            error = e.args
+            print('Your error message is: ', error)
+            flash(error)
+            rows = ''
+
+ 
+ 
+    
+
+    return render_template("chineseRemTh.html", result = rows, success = success)
 
 
 

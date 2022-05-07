@@ -9,7 +9,10 @@
  
        body{
           font-family: 'Inter', sans-serif;
+          color: white;
        }
+       
+
     </style>
  
  
@@ -19,31 +22,88 @@
 
 <body>
 
+    {% for message in get_flashed_messages() %}
+
+      {% if success == False %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{  message  }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+  
+        {% endif %}
+  
+  
+        {% if success == True %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{  message  }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+    
+      {% endif %}
+      
+  
+      {% endfor %}
+
     <h1>Prime Factorization</h1>
+
+    <br>
+    <br>
+
+    <div class = "card bg-dark text-white">
+        <br>
+        <h2>Definition:</h2>
+        <span>Prime factorization is a way of expressing a number as a product of its prime factors. A prime number is a
+            number that has exactly two factors, 1 and the number itself. For example, if we take the number 30. We know
+            that 30 = 5 × 6, but 6 is not a prime number. The number 6 can further be factorized as 2 × 3, where 2 and 3 are
+            prime numbers. Therefore, the prime factorization of 30 = 2 × 3 × 5, where all the factors are prime
+            numbers.</span>
+        
+            <div>To see it in action, enter a number and we will display the number's prime factors for you!</div>
+        
+        <br>
+        
+        </div>
+
+
+ 
 
 
     <form action="" method="POST">
 
+        <div class="form-group row" >
+
+            <div class="col-xs-2">
+
+                <br>
+                <label for="nmb"><h3>Enter a number</h3></label>
+                <input type="text" class="form-control" id="nmb" name="normalNumber">
+            </div>
+          
+            <br>
 
 
-        <div class="form-group" >
-            <label for="nmb"><h3>Enter a number</h3></label>
-            <input type="text" class="form-control" id="nmb" name="normalNumber">
-        </div>
-      
-        <br>
-    
-        <input class="btn btn-outline-warning" type="submit" value="Find"> 
+            </div>
+
+            <br>
+
+
+            <input class="btn btn-outline-warning" type="submit" value="Find"> 
+
     </form> 
     
     
-    <ul class="list-group">
-    
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-           Prime Factors are: {% for row in primeFactors %} {{ row }} ; {%endfor%} 
-        </li>
-    
-      </ul>
+
+    <br>
+
+      <div >
+        
+        <div>
+          <h4><b>Prime factors are:</b></h4> 
+          <h3>{% for row in primeFactors %} {{ row }} &nbsp; {%endfor%}</h3> 
+        </div>
+      </div>
+
+
 </body>
 
 {% endblock %}

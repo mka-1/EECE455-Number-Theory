@@ -9,6 +9,7 @@
  
        body{
           font-family: 'Inter', sans-serif;
+          color:white;
        }
     </style>
  
@@ -19,7 +20,51 @@
 
 <body>
 
-    <h1>Prime Factorization</h1>
+    {% for message in get_flashed_messages() %}
+
+      {% if success == False %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{  message  }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+  
+        {% endif %}
+  
+  
+        {% if success == True %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{  message  }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+    
+      {% endif %}
+      
+  
+      {% endfor %}
+
+    <h1>Miller-Rabin Algorithm</h1>
+
+
+    <br>
+    <br>
+
+
+    
+    
+<div class="card bg-dark text-white">
+  <br>
+  <h2>Definition:</h2>
+  <span>The Miller–Rabin primality test or Rabin–Miller primality test is a probabilistic primality test: an algorithm
+    which determines whether a given number is likely to be prime, similar to the Fermat primality test and the
+    Solovay–Strassen primality test.</span>
+
+  <div>To see it in action, enter a number and we will display the result!</div>
+
+  <br>
+
+</div>
+
+
 
 
     <form action="" method="POST">
@@ -32,18 +77,24 @@
         </div>
       
         <br>
+        <br>
     
         <input class="btn btn-outline-warning" type="submit" value="Find"> 
     </form> 
     
     
-    <ul class="list-group">
-    
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-           Is it prime?: {{ probableAnswer }}
-        </li>
-    
-      </ul>
+    <br>
+
+      <div >
+        
+        <div >
+          <h4><b>Is it prime?</b></h4> 
+          <h3> {{ probableAnswer }}</h3> 
+        </div>
+      </div>
+
+
+      
 </body>
 
 {% endblock %}

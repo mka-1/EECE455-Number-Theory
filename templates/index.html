@@ -10,7 +10,60 @@
  
        body{
           font-family: 'Inter', sans-serif;
+          color:white;
        }
+
+
+       .center {
+            margin: auto;
+            width: 50%;
+            border: none;
+            padding: 10px;
+        }
+
+
+
+        .fcc-btn {
+            font-family: 'Inter', sans-serif;
+            border-radius: 4px;
+            background-color: white;
+            border: none;
+            color: black;
+            text-align: center;
+            font-size: 32px;
+            padding: 16px;
+            width: 350px;
+            height: 140px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 36px;
+            box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+            }
+
+        .fcc-btn:after {
+            content: '»';
+            position: absolute;
+            opacity: 0;  
+            top: 14px;
+            right: -20px;
+            transition: 0.5s;
+            }
+
+        .fcc-btn:hover {
+            padding-right: 24px;
+            padding-left:8px;
+            }
+
+        .fcc-btn:hover:after{
+            opacity: 1;
+            right: 10px;
+
+        }
     </style>
  
  
@@ -23,7 +76,47 @@
 
 
 {% block content %}
-<h1>Hello</h1>
+<h1>Welcome to the online educational Number Theory calculator.</h1>
+
+<div>
+    <h6>Contribution done by: Mohammad Kahil, Hadi Aram Bashir, Jaafar Alawiyeh and Karim Alameh. Project done for the 455 Spring 21/22 Class with Dr. Ali Hussein.</h6>
+</div>
+
+<!-- <div class="center">
+    <a class="fcc-btn" href="{{  url_for('primeFac')  }}"><span>Prime Factorization</span></a>
+    <a class="fcc-btn" href="{{  url_for('totientFunc')  }}">Totient Function</a>
+    <a class="fcc-btn" href="{{  url_for('millerRabin')  }}">Miller Rabin</a>
+    <a class="fcc-btn" href="{{  url_for('fastExpo')  }}">Fast Exponentiation</a>
+    <a class="fcc-btn" href="{{  url_for('chineseRemTheorem')  }}">Chinese Remainder Theorem</a>
+</div> -->
+
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <a class="fcc-btn" href="{{  url_for('primeFac')  }}"><span>Prime Factorization</span></a>
+      </div>
+      <div class="col">
+        <a class="fcc-btn" href="{{  url_for('totientFunc')  }}">Totient Function</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <a class="fcc-btn" href="{{  url_for('millerRabin')  }}">Miller Rabin</a>
+      </div>
+      <div class="col">
+        <a class="fcc-btn" href="{{  url_for('fastExpo')  }}">Fast Exponentiation</a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="center">
+    <a class="fcc-btn" href="{{  url_for('chineseRemTheorem')  }}">Chinese Remainder Theorem</a>
+  </div>
+
+
 
 {% endblock %}
 </html>

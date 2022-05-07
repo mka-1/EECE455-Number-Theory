@@ -9,6 +9,7 @@
  
        body{
           font-family: 'Inter', sans-serif;
+          color:white;
        }
     </style>
  
@@ -19,31 +20,76 @@
 
 <body>
 
-    <h1>Prime Factorization</h1>
+    {% for message in get_flashed_messages() %}
+
+      {% if success == False %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{  message  }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+  
+        {% endif %}
+  
+  
+        {% if success == True %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{  message  }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+    
+      {% endif %}
+      
+  
+      {% endfor %}
+
+    <h1>Totient function</h1>
+
+    <br>
+    <br>
+
+
+    <div class = "card bg-dark text-white">
+      <br>
+      <h2>Definition:</h2>
+      <span>The totient function &phi;(n), also called Euler's totient function, is defined as the number of positive integers
+        less or equal to n that are relatively prime to (i.e., do not contain any factor in common with) n, where 1 is counted as being
+          relatively prime to all numbers. Since a number less than or equal to and relatively prime to a given number is
+          called a totative, the totient function &phi;(n) can be simply defined as the number of totatives of n. For example,
+          there are eight totatives of 24 (1, 5, 7, 11, 13, 17, 19, and 23), so &phi;(24)=8.</span>
+      
+          <div>To see it in action, enter a number and we will display the totient function!</div>
+      
+      <br>
+      
+      </div>
 
 
     <form action="" method="POST">
 
 
-
         <div class="form-group" >
+
             <label for="nmb"><h3>Enter a number</h3></label>
             <input type="text" class="form-control" id="nmb" name="normalNumber">
         </div>
       
+        <br>
         <br>
     
         <input class="btn btn-outline-warning" type="submit" value="Find"> 
     </form> 
     
     
-    <ul class="list-group">
-    
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-           Phi: {{ phiOfN }}
-        </li>
-    
-      </ul>
+<br>
+
+      <div >
+        
+        <div >
+          <h4><b>Result is:</b></h4> 
+          <h3> &phi;: {{ phiOfN }}</h3> 
+        </div>
+      </div>
+
 </body>
 
 {% endblock %}

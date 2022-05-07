@@ -9,6 +9,7 @@
  
        body{
           font-family: 'Inter', sans-serif;
+          color:white;
        }
     </style>
  
@@ -18,10 +19,48 @@
 {% block content %}
 
 <body>
+    
+    {% for message in get_flashed_messages() %}
+
+      {% if success == False %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{  message  }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+  
+        {% endif %}
+  
+  
+        {% if success == True %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{  message  }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+    
+      {% endif %}
+      
+  
+      {% endfor %}
 
     <h1>Chinese Remainder Theorem</h1>
 
 
+    <div class="card bg-dark text-white">
+      <br>
+      <h2>Definition:</h2>
+      <span>Chinese Remainder Theorem is used to speed up modulo computations. If we're working with a modulo which is a
+        prodcut of numbers; for example: mod M = m<sub>1</sub> m<sub>2</sub>..m<sub>k</sub> with gcd(m<sub>i</sub>
+        , m<sub>j</sub>) = 1. Chinese Remainder theorem lets us work in each moduli m<sub>i</sub> separately </span>
+    
+      <div>To see it in action, enter a list of moduli M (ex: 971), and a list of remainders A (ex: 435). The output X in
+        this example will be such that: X &#8801; 4 mod 9; X &#8801; 3 mod 7; X &#8801; 5 mod 1. </div>
+    
+      <br>
+    
+    </div>
+    
+    <br>
+    
     <form action="" method="POST">
 
 
@@ -31,6 +70,7 @@
             <input type="text" class="form-control" id="nmb" name="m">
         </div>
 
+        <br>
 
         <div class="form-group" >
             <label for="nmb2"><h3>Enter a list of Integers A:</h3></label>
@@ -38,18 +78,20 @@
         </div>
       
         <br>
+        <br>
     
         <input class="btn btn-outline-warning" type="submit" value="Find"> 
     </form> 
-    
-    
-    <ul class="list-group">
-    
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-           Result is : {{ result }}
-        </li>
-    
-      </ul>
+
+    <br>
+      <div >
+        
+        <div >
+          <h4><b>The result X is:</b></h4> 
+          <h3> {{ result }}</h3> 
+        </div>
+      </div>
+      <br>
 </body>
 
 {% endblock %}
