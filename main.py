@@ -318,7 +318,11 @@ def chineseRemTheorem():
 
     return render_template("chineseRemTh.html", result = rows, success = success)
 
+@app.route('/about/',  methods=['POST', 'GET'])
+def about():
 
+
+    return render_template("about.html")
 
 
 

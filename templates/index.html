@@ -1,39 +1,38 @@
 <!doctype html>
 
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
 
 <html><head>
 
 
     <style>
-       @import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@100&display=swap');
  
        body{
-          font-family: 'Inter', sans-serif;
+          font-family: 'Poppins';
           color:white;
        }
 
 
        .center {
-            margin: auto;
-            width: 50%;
+
             border: none;
             padding: 10px;
         }
 
 
-
         .fcc-btn {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins';
             border-radius: 4px;
             background-color: white;
             border: none;
-            color: black;
+            color: #108690;
             text-align: center;
             font-size: 32px;
             padding: 16px;
             width: 350px;
             height: 140px;
+            line-height: 100%;
             transition: all 0.5s;
             cursor: pointer;
             margin: 36px;
@@ -77,9 +76,8 @@
 
 {% block content %}
 <h1>Welcome to the online educational Number Theory calculator.</h1>
-
+<br></br>
 <div>
-    <h6>Contribution done by: Mohammad Kahil, Hadi Aram Bashir, Jaafar Alawiyeh and Karim Alameh. Project done for the 455 Spring 21/22 Class with Dr. Ali Hussein.</h6>
 </div>
 
 <!-- <div class="center">
@@ -91,30 +89,34 @@
 </div> -->
 
 
-<div class="container">
+<div style="margin-left: 10%;margin-right: 10%;" class="container">
     <div class="row">
       <div class="col">
-        <a class="fcc-btn" href="{{  url_for('primeFac')  }}"><span>Prime Factorization</span></a>
+        <a style="line-height:100px;" class="fcc-btn" href="{{  url_for('primeFac')  }}"><span>Prime Factorization</span></a>
       </div>
       <div class="col">
-        <a class="fcc-btn" href="{{  url_for('totientFunc')  }}">Totient Function</a>
+        <a style="line-height:100px;" class="fcc-btn" href="{{  url_for('totientFunc')  }}">Totient Function</a>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <a class="fcc-btn" href="{{  url_for('millerRabin')  }}">Miller Rabin</a>
+        <a style="line-height:100px;" class="fcc-btn" href="{{  url_for('millerRabin')  }}">Miller Rabin</a>
       </div>
       <div class="col">
-        <a class="fcc-btn" href="{{  url_for('fastExpo')  }}">Fast Exponentiation</a>
+        <a style="line-height:100px;" class="fcc-btn" href="{{  url_for('fastExpo')  }}">Fast Exponentiation</a>
       </div>
 
+      <div class="col">
+        <a style="line-height:50px;" class="fcc-btn" href="{{  url_for('chineseRemTheorem')  }}">Chinese Remainder Theorem</a>
+      </div>
+
+      <div class="col">
+        <a style="line-height:100px;" class="fcc-btn" href="{{  url_for('about')  }}">About</a>
+      </div>
     </div>
   </div>
 
 
-  <div class="center">
-    <a class="fcc-btn" href="{{  url_for('chineseRemTheorem')  }}">Chinese Remainder Theorem</a>
-  </div>
 
 
 
